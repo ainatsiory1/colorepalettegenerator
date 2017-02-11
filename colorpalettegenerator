@@ -1,0 +1,460 @@
+#color palette generation by rabenirina aina tsiory
+require 'RMagick'
+require 'colorize'
+#load 'average.rb'
+include Magick
+###############################################
+#          Parent Palette Selection           #
+###############################################
+continue = 1
+while continue == 1 do
+  puts("Choose parent name from: earth, sad or trend")
+  parentname = gets.chomp #get Parent Palet number
+  puts("Children Name")
+  label= gets.chomp #get Parent Palet number
+  
+  #Initialize variables
+  
+  redchild1decimal1=Array.new(3,256) ,greenchild1decimal1=Array.new(3,256)
+  bluechild1decimal1=Array.new(3,256), redchild2decimal1=Array.new(3,256)
+  greenchild2decimal1=Array.new(3,256),bluechild2decimal1=Array.new(3,256)
+  re1=Array.new(5,256), gr1=Array.new(5,256), bl1=Array.new(5,256)
+  re2=Array.new(5,256), gr2=Array.new(5,256), bl2=Array.new(5,256)
+  i, oldparent, oldparent1,parent1,count,n=0,0,0,0,0
+  redvariable=Array.new(1000000,256)
+  greenvariable=Array.new(1000000,256)
+  bluevariable=Array.new(1000000,256)
+  redvariable0=Array.new(5,256)
+  greenvariable0=Array.new(5,256)
+  bluevariable0=Array.new(5,256)
+  redforY= Array.new(5,256)
+  greenforY = Array.new(5,256)
+  blueforY = Array.new(5,256)   
+  making5palettes = [1,2,3,4,5]
+
+making5palettes.each do |loop1|     #Loop to make all 5 palettes 
+  redresulttoinput2= Array.new(6,0)
+  greenresulttoinput2= Array.new(6,0)
+  blueresulttoinput2= Array.new(6,0)  
+  @parentname = parentname+'.png'
+  image1 = Magick::Image.read(@parentname).first
+  resulttoinput=Array.new(6,0)
+  time1=Time.new      
+  srand(rand(100)*time1.sec)
+    
+    rows=image1.rows
+    column=image1.columns
+    pixels = image1.get_pixels(0, 0, column, rows)
+    pixeloriginal = image1.get_pixels(0, 0, column, rows) 
+
+    imageresult1 = image1
+    imageresult2 = image1
+    imageresult3 = image1
+    imageresult4 = image1
+    imageresult5 = image1
+  
+  #reading informations from the Parent images 
+  for pixel in pixeloriginal
+    @a = Integer ( pixel.red )/257
+    #puts"#{@a}"
+    @b = Integer ( pixel.green )/257
+    @c = Integer ( pixel.blue )/257
+    #puts "#{@a} , #{@b} , #{@c}"
+    #change
+    if redvariable[i]==256 && greenvariable[i]==256 && bluevariable[i]==256
+      redvariable[i]=@a
+      greenvariable[i]=@b
+      bluevariable[i]=@c
+     # puts"#{redvariable[i]} #{greenvariable[i]} #{bluevariable[i]}"
+    end
+    i=i+1
+  end
+
+  #identify colors from parent palete
+  for i in 0..1000000 do
+    if redvariable[i]!=redvariable[i+1] || greenvariable[i]!=greenvariable[i+1] ||bluevariable[i]!=bluevariable[i+1]
+      count=count+1
+      if count<6
+        redvariable0[count] = redvariable[i]
+        greenvariable0[count] = greenvariable[i]
+        bluevariable0[count] = bluevariable[i]
+        #puts "valuse of i #{i}"
+        #puts"#{redvariable0[count]} #{greenvariable0[count]} #{bluevariable0[count]}"
+      end
+    end
+  end
+  ################################################
+  #          Reading Colors From Image           #
+  ################################################
+
+  ########################################
+  #          Parents Selection           #
+  ########################################
+    ary = [0,1,2]
+    ary.each do |k| # beginning loop2
+      plo = (0..1000).collect{ rand(1000) }
+      oldparent = oldparent1
+      parent1=oldparent
+      while parent1==oldparent do
+        parent1 = rand(1..5)       #Randomly choose parent color 1
+        oldparent1 = parent1
+      end 
+        
+      parent2=parent1
+      #puts "parent 1: #{parent1}"
+      while parent1==parent2 do
+        parent2 = rand(1..5)    #Randomly choose parent color 2 getrealPerent from parent 1
+      end 
+      #puts "parent 2: #{parent2}"
+  
+      #puts "parent 2: #{parent2}"
+      n = rand(2..5)           #Distribution
+
+      case parent1
+      when 1 then
+        re1[loop1]= redvariable0[1]
+        gr1[loop1]= greenvariable0[1]
+        bl1[loop1]= bluevariable0[1]
+      when 2 then
+        re1[loop1]= redvariable0[2]
+        gr1[loop1]= greenvariable0[2]
+        bl1[loop1]= bluevariable0[2]
+      when 3 then
+        re1[loop1]= redvariable0[3]
+        gr1[loop1]= greenvariable0[3]
+        bl1[loop1]= bluevariable0[3]
+      when 4 then
+        re1[loop1]= redvariable0[4]
+        gr1[loop1]= greenvariable0[4]
+        bl1[loop1]= bluevariable0[4]
+      when 5 then
+        re1[loop1]= redvariable0[5]
+        gr1[loop1]= greenvariable0[5]
+        bl1[loop1]= bluevariable0[5]
+      else
+        puts "error"
+      end
+      case parent2
+      when 1 then
+        re2[loop1]= redvariable0[1]
+        gr2[loop1]= greenvariable0[1]
+        bl2[loop1]= bluevariable0[1]
+      when 2 then
+        re2[loop1]= redvariable0[2]
+        gr2[loop1]= greenvariable0[2]
+        bl2[loop1]= bluevariable0[2]
+      when 3 then
+        re2[loop1]= redvariable0[3]
+        gr2[loop1]= greenvariable0[3]
+        bl2[loop1]= bluevariable0[3]
+      when 4 then
+        re2[loop1]= redvariable0[4]
+        gr2[loop1]= greenvariable0[4]
+        bl2[loop1]= bluevariable0[4]
+      when 5 then
+        re2[loop1]= redvariable0[5]
+        gr2[loop1]= greenvariable0[5]
+        bl2[loop1]= bluevariable0[5]
+      else
+        puts "error"
+      end
+                      
+      redchild1,bluechild1,greenchild1,redchild22,bluechild22,greenchild22=0,0,0,0,0,0     
+      
+      for i in 0..2                         
+          u=rand(0.0..0.9999999999)
+          if u <= 0.5 then 
+            x = (2.0*u)**(1.0/(n+1.0))
+          else 
+            x = (1.0/((2.0*(1.0-u)))**(1.0/(n+1.0)))
+          end              
+            if i==0
+            #puts "U Red: #{u} \n"
+            betared=x
+            end
+            if i==1
+              #puts "U Green: #{u} \n"
+              betagreen=x
+            end
+            if i==2
+              #puts "U Blue: #{u} \n"
+              betablue=x
+            end
+      end
+      redchild1=0.5*((1.0+betared)*re1[loop1]+(1.0-betared)*re2[loop1])  
+      greenchild1=0.5*((1.0+betagreen)*gr1[loop1]+(1.0-betagreen)*gr2[loop1])
+      bluechild1=0.5*((1.0+betablue)*bl1[loop1]+(1.0-betablue)*bl2[loop1])
+      if (bluechild1<0) then
+         bluechild1=0
+      end
+      if(bluechild1>255) then
+         bluechild1=255
+      end
+     redchild22=0.5*((1.0-betared)*re1[loop1]+(1.0+betared)*re2[loop1])
+     if (redchild22<0) then
+         redchild22=0
+     end
+     if(redchild22>255) then
+       redchild22=255
+    end
+    greenchild22=0.5*((1.0-betagreen)*gr1[loop1]+(1.0+betagreen)*gr2[loop1])
+    if (greenchild22<0) then
+      greenchild22=0
+    end
+    if(greenchild22>255) then
+       greenchild22=255
+    end
+       bluechild22=0.5*((1.0-betablue)*bl1[loop1]+(1.0+betablue)*bl2[loop1])
+    if (bluechild22<0) then
+       bluechild22=0
+    end
+    if(bluechild22>255) then
+      bluechild22=255
+    end
+                              ###############################
+                              #         Child1 mutation #
+                              ###############################
+    
+      if parent1 == 1
+        redresulttoinput2[1]= redchild1
+        greenresulttoinput2[1] = greenchild1
+        blueresulttoinput2[1] = bluechild1
+      end
+      if parent1 == 2
+        redresulttoinput2[2]=redchild1
+        greenresulttoinput2[2] = greenchild1
+        blueresulttoinput2[2] = bluechild1
+      end
+      if parent1 == 3
+        redresulttoinput2[3]=redchild1
+        greenresulttoinput2[3] = greenchild1
+        blueresulttoinput2[3] = bluechild1
+      end
+      if parent1 == 4
+        redresulttoinput2[4]=redchild1
+        greenresulttoinput2[4] = greenchild1
+        blueresulttoinput2[4] = bluechild1
+      end
+      if parent1 == 5
+        redresulttoinput2[5]=redchild1
+        greenresulttoinput2[5] = greenchild1
+        blueresulttoinput2[5] = bluechild1
+      end
+                            ###############################
+                            #       Child2 mutation       #
+                            ###############################
+    
+      if parent2 == 1
+        redresulttoinput2[1]= redchild22
+        greenresulttoinput2[1] = greenchild22
+        blueresulttoinput2[1] = bluechild22
+      end
+      if parent2 == 2
+        redresulttoinput2[2]=redchild22
+        greenresulttoinput2[2] = greenchild22
+        blueresulttoinput2[2] = bluechild22
+      end
+      if parent2 == 3
+        redresulttoinput2[3]= redchild22
+        greenresulttoinput2[3] = greenchild22
+        blueresulttoinput2[3] = bluechild22
+      end
+      if parent2 == 4
+        redresulttoinput2[4]= redchild22
+        greenresulttoinput2[4] = greenchild22
+        blueresulttoinput2[4] = bluechild22
+      end
+      if parent2 == 5
+        redresulttoinput2[5]= redchild22
+        greenresulttoinput2[5] = greenchild22
+        blueresulttoinput2[5] = bluechild22
+      end
+    end # end loop2
+
+    ############################################################################
+    #                     Input Result to Image                                #
+    ############################################################################
+    if loop1!=5
+      for pixel in pixels
+        @a = Integer ( pixel.red )/257
+        @b = Integer ( pixel.green )/257
+        @c = Integer ( pixel.blue )/257
+        #puts "#{@a} , #{@b} , #{@c}"
+        #change
+        if @a==Integer(redvariable0[1]) && @b==Integer(greenvariable0[1]) &&@c==Integer(bluevariable0[1])
+          #pixel1 = RGBColour.new(@a,@b,@c)
+          #pixel2 = pixel1.to_grayscale
+          if redresulttoinput2[1] != 0
+            pixel.red = redresulttoinput2[1]*257
+            redforY[0] = redresulttoinput2[1]
+          end
+          if greenresulttoinput2[1] != 0
+            pixel.green = greenresulttoinput2[1]*257
+            greenforY[0] = greenresulttoinput2[1]
+          end
+          if blueresulttoinput2[1] != 0
+            pixel.blue = blueresulttoinput2[1]*257
+            blueforY[0] = blueresulttoinput2[1]
+          end
+          #impressionword
+        end
+        if @a==Integer(redvariable0[2]) && @b==Integer(greenvariable0[2]) &&@c==Integer(bluevariable0[2])
+          #pixel1 = RGBColour.new(@a,@b,@c)
+          #pixel2 = pixel1.to_grayscale
+          if redresulttoinput2[2] != 0
+            pixel.red = redresulttoinput2[2]*257
+            redforY[1] = redresulttoinput2[2]
+          end
+          if greenresulttoinput2[2] != 0
+            pixel.green = greenresulttoinput2[2]*257
+            greenforY[1] = greenresulttoinput2[2]
+          end
+          if blueresulttoinput2[2] != 0
+            pixel.blue = blueresulttoinput2[2]*257
+            blueforY[1] = blueresulttoinput2[2]
+          end
+          #impressionword
+        end
+        if @a==Integer(redvariable0[3]) && @b==Integer(greenvariable0[3]) &&@c==Integer(bluevariable0[3])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+            if redresulttoinput2[3] != 0
+              pixel.red = redresulttoinput2[3]*257
+              redforY[2] = redresulttoinput2[3]
+            end
+            if greenresulttoinput2[3] != 0
+              pixel.green = greenresulttoinput2[3]*257
+              greenforY[2] = greenresulttoinput2[3]
+            end
+            if blueresulttoinput2[3] != 0
+              pixel.blue = blueresulttoinput2[3]*257
+              blueforY[2] = blueresulttoinput2[3]
+            end
+            #impressionword
+        end
+        if @a==Integer(redvariable0[4]) && @b==Integer(greenvariable0[4]) &&@c==Integer(bluevariable0[4])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+            if redresulttoinput2[4] != 0
+              pixel.red = redresulttoinput2[4]*257
+              redforY[3] = redresulttoinput2[4]
+            end
+            if greenresulttoinput2[4] != 0
+              pixel.green = greenresulttoinput2[4]*257
+              greenforY[3] = greenresulttoinput2[4]
+            end
+            if blueresulttoinput2[4] != 0
+              pixel.blue = blueresulttoinput2[4]*257
+              blueforY[3] = blueresulttoinput2[4]
+            end
+            #impressionword
+        end
+        if @a==Integer(redvariable0[5]) && @b==Integer(greenvariable0[5]) &&@c==Integer(bluevariable0[5])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+            if redresulttoinput2[5] != 0
+              pixel.red = redresulttoinput2[5]*257
+              redforY[4] = redresulttoinput2[5]
+            end
+            if greenresulttoinput2[5] != 0
+              pixel.green = greenresulttoinput2[5]*257
+              greenforY[4] = greenresulttoinput2[5]
+            end
+            if blueresulttoinput2[5] != 0
+              pixel.blue = blueresulttoinput2[5]*257
+              blueforY[4] = blueresulttoinput2[5]
+            end
+            #impressionword
+        end      
+      end
+    end
+    if loop1 == 5 
+      for pixel in pixels
+        @a = Integer ( pixel.red )/257
+        @b = Integer ( pixel.green )/257
+        @c = Integer ( pixel.blue )/257
+        #puts "#{@a} , #{@b} , #{@c}"
+        #change
+        if @a==Integer(redvariable0[1]) && @b==Integer(greenvariable0[1]) &&@c==Integer(bluevariable0[1])
+          #pixel1 = RGBColour.new(@a,@b,@c)
+          #pixel2 = pixel1.to_grayscale
+     
+          #impressionword
+          redforY[0] = redvariable0[1]
+          greenforY[0] = greenvariable0[1]
+          blueforY[0] = bluevariable0[1]
+        end
+        if @a==Integer(redvariable0[2]) && @b==Integer(greenvariable0[2]) &&@c==Integer(bluevariable0[2])
+          #pixel1 = RGBColour.new(@a,@b,@c)
+          #pixel2 = pixel1.to_grayscale
+   
+          #impressionword
+          redforY[1] = redvariable0[2]
+          greenforY[1] = greenvariable0[2]
+          blueforY[1] = bluevariable0[2]
+        end
+        if @a==Integer(redvariable0[3]) && @b==Integer(greenvariable0[3]) &&@c==Integer(bluevariable0[3])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+         
+            #impressionword
+            redforY[2] = redvariable0[3]
+            greenforY[2] = greenvariable0[3]
+            blueforY[2] = bluevariable0[3]
+        end
+        if @a==Integer(redvariable0[4]) && @b==Integer(greenvariable0[4]) &&@c==Integer(bluevariable0[4])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+        
+            #impressionword
+            redforY[3] = redvariable0[4]
+            greenforY[3] = greenvariable0[4]
+            blueforY[3] = bluevariable0[4]
+        end
+        if @a==Integer(redvariable0[5]) && @b==Integer(greenvariable0[5]) &&@c==Integer(bluevariable0[5])
+            #pixel1 = RGBColour.new(@a,@b,@c)
+            #pixel2 = pixel1.to_grayscale
+          
+            #impressionword
+            redforY[4] = redvariable0[5]
+            greenforY[4] = greenvariable0[5]
+            blueforY[4] = bluevariable0[5]
+        end      
+      end
+    end
+    ############################################################################
+    #                     Output Result to Image                                #
+    ############################################################################
+    
+    case loop1 
+    when 1 then #first childpalette
+       @label1 = label+'1.png'
+       imageresult1.store_pixels(0, 0, column, rows, pixels)
+       pixels = imageresult1.get_pixels(0, 0, column, rows) 
+       imageresult1.write(@label1)   
+    when 2 then #second childpalette
+       @label2 = label+'2.png'
+       imageresult2.store_pixels(0, 0, column, rows, pixels)
+       pixels = imageresult2.get_pixels(0, 0, column, rows) 
+       imageresult2.write(@label2)  
+    when 3 then
+       @label3 = label+'3.png'
+       imageresult3.store_pixels(0, 0, column, rows, pixels)
+       pixels = imageresult3.get_pixels(0, 0, column, rows) 
+       imageresult3.write(@label3)  
+    when 4 then
+      @label4 = label+'4.png'
+      imageresult4.store_pixels(0, 0, column, rows, pixels)
+      pixels = imageresult4.get_pixels(0, 0, column, rows) 
+      imageresult4.write(@label4)  
+    when 5 then
+       @label5 = label+'5.png'
+       imageresult5.write(@label5)  
+    end
+      #puts "Finished".red
+  end
+  ############################IMPRESSION WORD#############################
+  puts("Press 1 if continue else press 0")
+  continue = gets.to_i #get Parent Palet number
+end
+  
