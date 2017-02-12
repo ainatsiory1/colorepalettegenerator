@@ -280,7 +280,7 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
   #          Children Creation           #
   ########################################
     ############################################################################
-    #                     Creating Children image                              #
+    #                     Input colors into pixels                             #
     ############################################################################
     if loop1!=5
       for pixel in pixels
@@ -294,142 +294,71 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
           #pixel2 = pixel1.to_grayscale
           if redresulttoinput2[1] != 0
             pixel.red = redresulttoinput2[1]*257
-            redforY[0] = redresulttoinput2[1]
           end
           if greenresulttoinput2[1] != 0
             pixel.green = greenresulttoinput2[1]*257
-            greenforY[0] = greenresulttoinput2[1]
           end
           if blueresulttoinput2[1] != 0
             pixel.blue = blueresulttoinput2[1]*257
-            blueforY[0] = blueresulttoinput2[1]
           end
-          #impressionword
         end
         if @a==Integer(redvariable0[2]) && @b==Integer(greenvariable0[2]) &&@c==Integer(bluevariable0[2])
           #pixel1 = RGBColour.new(@a,@b,@c)
           #pixel2 = pixel1.to_grayscale
           if redresulttoinput2[2] != 0
             pixel.red = redresulttoinput2[2]*257
-            redforY[1] = redresulttoinput2[2]
           end
           if greenresulttoinput2[2] != 0
             pixel.green = greenresulttoinput2[2]*257
-            greenforY[1] = greenresulttoinput2[2]
           end
           if blueresulttoinput2[2] != 0
             pixel.blue = blueresulttoinput2[2]*257
-            blueforY[1] = blueresulttoinput2[2]
           end
-          #impressionword
         end
         if @a==Integer(redvariable0[3]) && @b==Integer(greenvariable0[3]) &&@c==Integer(bluevariable0[3])
             #pixel1 = RGBColour.new(@a,@b,@c)
             #pixel2 = pixel1.to_grayscale
             if redresulttoinput2[3] != 0
               pixel.red = redresulttoinput2[3]*257
-              redforY[2] = redresulttoinput2[3]
             end
             if greenresulttoinput2[3] != 0
               pixel.green = greenresulttoinput2[3]*257
-              greenforY[2] = greenresulttoinput2[3]
             end
             if blueresulttoinput2[3] != 0
               pixel.blue = blueresulttoinput2[3]*257
-              blueforY[2] = blueresulttoinput2[3]
             end
-            #impressionword
         end
         if @a==Integer(redvariable0[4]) && @b==Integer(greenvariable0[4]) &&@c==Integer(bluevariable0[4])
             #pixel1 = RGBColour.new(@a,@b,@c)
             #pixel2 = pixel1.to_grayscale
             if redresulttoinput2[4] != 0
               pixel.red = redresulttoinput2[4]*257
-              redforY[3] = redresulttoinput2[4]
             end
             if greenresulttoinput2[4] != 0
               pixel.green = greenresulttoinput2[4]*257
-              greenforY[3] = greenresulttoinput2[4]
             end
             if blueresulttoinput2[4] != 0
               pixel.blue = blueresulttoinput2[4]*257
-              blueforY[3] = blueresulttoinput2[4]
             end
-            #impressionword
         end
         if @a==Integer(redvariable0[5]) && @b==Integer(greenvariable0[5]) &&@c==Integer(bluevariable0[5])
             #pixel1 = RGBColour.new(@a,@b,@c)
             #pixel2 = pixel1.to_grayscale
             if redresulttoinput2[5] != 0
               pixel.red = redresulttoinput2[5]*257
-              redforY[4] = redresulttoinput2[5]
             end
             if greenresulttoinput2[5] != 0
               pixel.green = greenresulttoinput2[5]*257
-              greenforY[4] = greenresulttoinput2[5]
             end
             if blueresulttoinput2[5] != 0
               pixel.blue = blueresulttoinput2[5]*257
-              blueforY[4] = blueresulttoinput2[5]
             end
-            #impressionword
         end      
       end
     end
-    if loop1 == 5 
-      for pixel in pixels
-        @a = Integer ( pixel.red )/257
-        @b = Integer ( pixel.green )/257
-        @c = Integer ( pixel.blue )/257
-        #puts "#{@a} , #{@b} , #{@c}"
-        #change
-        if @a==Integer(redvariable0[1]) && @b==Integer(greenvariable0[1]) &&@c==Integer(bluevariable0[1])
-          #pixel1 = RGBColour.new(@a,@b,@c)
-          #pixel2 = pixel1.to_grayscale
-     
-          #impressionword
-          redforY[0] = redvariable0[1]
-          greenforY[0] = greenvariable0[1]
-          blueforY[0] = bluevariable0[1]
-        end
-        if @a==Integer(redvariable0[2]) && @b==Integer(greenvariable0[2]) &&@c==Integer(bluevariable0[2])
-          #pixel1 = RGBColour.new(@a,@b,@c)
-          #pixel2 = pixel1.to_grayscale
-   
-          #impressionword
-          redforY[1] = redvariable0[2]
-          greenforY[1] = greenvariable0[2]
-          blueforY[1] = bluevariable0[2]
-        end
-        if @a==Integer(redvariable0[3]) && @b==Integer(greenvariable0[3]) &&@c==Integer(bluevariable0[3])
-            #pixel1 = RGBColour.new(@a,@b,@c)
-            #pixel2 = pixel1.to_grayscale
-         
-            #impressionword
-            redforY[2] = redvariable0[3]
-            greenforY[2] = greenvariable0[3]
-            blueforY[2] = bluevariable0[3]
-        end
-        if @a==Integer(redvariable0[4]) && @b==Integer(greenvariable0[4]) &&@c==Integer(bluevariable0[4])
-            #pixel1 = RGBColour.new(@a,@b,@c)
-            #pixel2 = pixel1.to_grayscale
-        
-            #impressionword
-            redforY[3] = redvariable0[4]
-            greenforY[3] = greenvariable0[4]
-            blueforY[3] = bluevariable0[4]
-        end
-        if @a==Integer(redvariable0[5]) && @b==Integer(greenvariable0[5]) &&@c==Integer(bluevariable0[5])
-            #pixel1 = RGBColour.new(@a,@b,@c)
-            #pixel2 = pixel1.to_grayscale
-          
-            #impressionword
-            redforY[4] = redvariable0[5]
-            greenforY[4] = greenvariable0[5]
-            blueforY[4] = bluevariable0[5]
-        end      
-      end
-    end
+    ############################################################################
+    #                     Input colors into pixels                             #
+    ############################################################################
     ############################################################################
     #                     Output Result to Image                                #
     ############################################################################
@@ -461,8 +390,7 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
     end
       #puts "Finished".red
   end
-  ############################IMPRESSION WORD#############################
+  
   puts("Press 1 if continue else press 0")
   continue = gets.to_i #get Parent Palet number
 end
-  
