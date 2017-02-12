@@ -3,9 +3,9 @@ require 'RMagick'
 require 'colorize'
 #load 'average.rb'
 include Magick
-###############################################
-#          Parent Palette Selection           #
-###############################################
+ ################################################
+ #          Reading Colors From Parent          #
+ ################################################
 continue = 1
 while continue == 1 do
   puts("Choose parent name from: earth, sad or trend")
@@ -84,7 +84,7 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
     end
   end
   ################################################
-  #          Reading Colors From Image           #
+  #          Reading Colors From parent          #
   ################################################
 
   ########################################
@@ -158,7 +158,13 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
       else
         puts "error"
       end
-                      
+     
+  ########################################
+  #          Parents Selection           #
+  ########################################
+  ########################################
+  #          Children Creation           #
+  ########################################
       redchild1,bluechild1,greenchild1,redchild22,bluechild22,greenchild22=0,0,0,0,0,0     
       
       for i in 0..2                         
@@ -270,9 +276,11 @@ making5palettes.each do |loop1|     #Loop to make all 5 palettes
         blueresulttoinput2[5] = bluechild22
       end
     end # end loop2
-
+  ########################################
+  #          Children Creation           #
+  ########################################
     ############################################################################
-    #                     Input Result to Image                                #
+    #                     Creating Children image                              #
     ############################################################################
     if loop1!=5
       for pixel in pixels
